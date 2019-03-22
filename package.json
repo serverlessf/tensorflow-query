@@ -1,0 +1,29 @@
+{
+  "name": "@mycelium/query",
+  "version": "0.0.1",
+  "description": "Query service for small distributed IoT network.",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodef/mycelium-query.git"
+  },
+  "keywords": [
+    "mycelium",
+    "query",
+    "service",
+    "small",
+    "distributed",
+    "iot",
+    "network",
+    "merferry"
+  ],
+  "author": "wolfram77@gmail.com",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/nodef/mycelium-query/issues"
+  },
+  "homepage": "https://github.com/nodef/mycelium-query#readme"
+}
