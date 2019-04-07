@@ -1,9 +1,10 @@
 {
   "name": "@mycelium/query",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Query service for small distributed IoT network.",
   "main": "index.js",
   "scripts": {
+    "start": "node ./",
     "test": "exit"
   },
   "repository": {
