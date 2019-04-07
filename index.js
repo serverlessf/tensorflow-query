@@ -40,8 +40,8 @@ function dbReplace(db, table, row) {
   return db.prepare(sqlReplace(table, row)).run(row);
 }
 
-function dbReplaceAny(db, table ,row) {
-  var old = db.prepare(`SELECT * FROM "${table}" WHERE "id"=@id`).get(row);
+function dbReplaceAny(db, table, row) {
+  var old = db.prepare(`SELECT * FROM "${table}" WHERE "id"=@id`).get(row)||{};
   var pragma = db.pragma(`table_info("${table}")`);
   var keys = pragma.map(r => r.name.toLowerCase());
   for(var k in row) {
