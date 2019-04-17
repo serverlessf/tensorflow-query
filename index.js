@@ -1,7 +1,7 @@
-const Database = require('better-sqlite3');
 const express = require('extra-express');
 const http = require('http');
 const path = require('path');
+const table = require('./src/table');
 
 
 
@@ -10,8 +10,6 @@ const PORT = E['PORT']||'8000';
 const ASSETS = path.join(__dirname, 'assets');
 const app = express();
 const server = http.createServer(app);
-
-
 
 
 
@@ -24,24 +22,25 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/:org', (req, res) => {
-  var {org} = req.params, {sql} = req.body;
-  var s = db.prepare(sql||`SELECT * FROM "${org}"`);
-  res.json(s.all());
+app.delete('/table/:id', (req, res) => {
+  var {id} = req.params;
+  res.json(table.delete(id));
 });
-app.get('/:org/:id', (req, res) => {
-  var {org, id} = req.params;
-  var s = db.prepare(`SELECT * FROM "${org}" WHERE "id"=?`);
-  res.send(s.get(id));
+app.post('/table', (req, res) => {
+  var {id} = req.body;
+  res.json(table.create(id));
 });
-app.post('/:org', (req, res) => {
-  var {org} = req.params;
-  var s = db.prepare(`CREATE TABLE IF NOT EXISTS "${org}" ("id" TEXT PRIMARY KEY)`);
-  res.json(s.run());
+app.delete('/table/:id', (req, res) => {
+  var {id} = req.params, {sql} = req.body;
+  res.json(table.delete(id, sql));
 });
-app.post('/:org/:id', (req, res) => {
-  var {org, id} = req.params, row = Object.assign({}, sqlFilter(req.body), {id});
-  res.json(dbReplaceAny(db, org, row));
+app.post('/table/:id', (req, res) => {
+  var {id} = req.params, row = req.body;
+  res.json(table.replace(id, row));
+});
+app.get('/table/:id', (req, res) => {
+  var {id} = req.params, {sql} = req.body;
+  res.json(table.select(id, sql));
 });
 
 app.use(express.static(ASSETS, {extensions: ['html']}));
