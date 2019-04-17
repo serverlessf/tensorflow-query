@@ -9,18 +9,17 @@
 <script src="https://unpkg.com/mithril/mithril.js"></script>
 <link rel="stylesheet" href="index.css">
 <script async src="ilist.js"></script>
-<title>APP LIST: STATUS</title>
+<title>IMAGE LIST: QUERY</title>
 </head>
 
 
 <body class="image">
 <nav><label><input type="checkbox"><header><a href="/">
-  <img src="https://i.ibb.co/0hPgKYL/logo.png"> STATUS
+  <img src="https://i.ibb.co/0hPgKYL/logo.png"> QUERY
   </a></header>
   <ul>
-    <li><a href="/ilist.html" id="aimage">App</a></li>
-    <li><a href="/clist.html" id="acontainer">Instance</a></li>
-    <li><a href="/" id="astatus">Status</a></li>
+    <li><a href="/ilist.html" id="aimage">Image</a></li>
+    <li><a href="/clist.html" id="acontainer">Container</a></li>
   </ul>
 </label></nav>
 
@@ -31,19 +30,19 @@
   <a href="/upload.html?image=" btn>New App</a>
   <grid txt="l">
   <div col="1/2">
-    <label>Namespace</label>
-    <input type="text" name="table" id="table" placeholder="e.g. default">
+    <label>Scope</label>
+    <input type="text" id="scope" placeholder="e.g. default">
   </div>
   <div col="1/2">
     <label>Query</label>
-    <input type="text" name="sql" id="sql" placeholder="e.g. city='Hyderabad'">
+    <input type="text" id="sql" placeholder="e.g. city='Hyderabad'">
   </div>
   </grid>
 </form>
 <table>
   <thead><tr>
-    <th>Device</th>
     <th>ID</th>
+    <th>Device</th>
     <th>Version</th>
     <th>Runtime</th>
     <th>Ports</th>

@@ -17,12 +17,26 @@ function type(val) {
   return SQLTYPE[typeof val]||null;
 }
 
+function objectStringify(object, separator) {
+  var o = object, s = separator, out = '';
+  for(var k in o)
+    out += k+'='+o[k]+s;
+  return out.substring(0, out.length-s.length);
+}
+
+function valueMap(value) {
+  var v = value;
+  if(Array.isArray(v)) return v.join(';');
+  if(v && typeof v==='object') return objectStringify(v, ';');
+  return v;
+}
+
 function rowMap(row) {
   var out = {};
   for(var k in row)
-    if(type(row[k])) out[k] = row[k];
+    out[k] = valueMap(row[k]);
   return out;
-};
+}
 
 function queryMap(query) {
   var q = (query||'').trim();

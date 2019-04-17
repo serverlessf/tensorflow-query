@@ -1,5 +1,5 @@
 const $p = document.querySelector('p');
-const $table = document.querySelector('#table');
+const $scope = document.querySelector('#scope');
 const $sql = document.querySelector('#sql');
 const $tbody = document.querySelector('tbody');
 var options = {};
@@ -20,13 +20,14 @@ function onReady() {
 
 async function request(o) {
   console.log('request()', o);
-  var table = $table.value||'default', data = {sql: $sql.value};
-  var is = await m.request({method: 'GET', url: `/table/${table}.image`, data});
+  var scope = $scope.value||'default', data = {sql: $sql.value};
+  var is = await m.request({method: 'GET', url: `/table/${scope}.image`, data});
+  console.log(is);
   m.render($tbody, is.map(i => m('tr', [
-    m('td', m('a', {href: `http://${i.device}`}, i.device)),
-    m('td', m('a', {href: `http://${i.device}/idata.html?image=${i.id}&from=${i.from}`}, i.id)),
+    m('td', m('a', {href: `http://${i.deviceaddr}/idata.html?image=${i.id}&from=${i.from}`}, i.id)),
+    m('td', m('a', {href: `http://${i.deviceaddr}`}, i.device)),
     m('td', i.version), m('td', i.from),
-    m('td', (i.expose||[]).map(p => m('tag', p)))
+    m('td', (i.expose||[]).split(';').map(p => m('tag', p)))
   ])));
 }
 
