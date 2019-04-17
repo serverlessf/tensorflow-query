@@ -24,7 +24,7 @@ async function request(o) {
   m.render($tbody, cs.map(c => m('tr', [
     m('td', m('a', {href: `http://${c.deviceaddr}/cdata.html?container=${c.id}&from=${c.image}`}, c.id)),
     m('td', m('a', {href: `http://${c.deviceaddr}`}, c.device)),
-    m('td', c.image), m('td', c.message), m('td', (c.publish||'').split(';').map(p => (
+    m('td', c.image), m('td', c.status), m('td', (c.publish||'').split(';').map(p => (
     m('tag', p.replace('=', '->'))
   )))])));
 }
