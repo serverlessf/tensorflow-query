@@ -1,5 +1,6 @@
 # sqlite database
 *.db
+*.db-journal
 
 # Logs
 logs
