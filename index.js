@@ -6,7 +6,7 @@ const path = require('path');
 
 
 const E = process.env;
-const PORT = E['PORT']||'9000';
+const PORT = E['PORT']||'8000';
 const ASSETS = path.join(__dirname, 'assets');
 const SQLTYPE = {
   'boolean': 'INTEGER',
