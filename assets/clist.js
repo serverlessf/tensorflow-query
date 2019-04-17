@@ -1,5 +1,5 @@
 const $p = document.querySelector('p');
-const $table = document.querySelector('#table');
+const $scope = document.querySelector('#scope');
 const $sql = document.querySelector('#sql');
 const $tbody = document.querySelector('tbody');
 var options = {};
@@ -18,15 +18,14 @@ function onReady() {
   return o;
 }
 
-// NOTE: c.device is device id or address?
 async function request(o) {
-  var table = $table.value, data = {sql: $sql.value};
-  var cs = await m.request({method: 'GET', url: `/table/${table}.container`, data});
+  var scope = $scope.value||'default', data = {sql: $sql.value};
+  var cs = await m.request({method: 'GET', url: `/table/${scope}.container`, data});
   m.render($tbody, cs.map(c => m('tr', [
-    m('td', m('a', {href: `http://${c.device}`}, c.device)),
-    m('td', m('a', {href: `http://${c.device}/cdata.html?container=${c.id}&from=${c.image}`}, c.id)),
-    m('td', c.image), m('td', c.message), m('td', Object.keys(c.publish||{}).map(k => (
-    m('tag', `${k}->${c.publish[k]}`)
+    m('td', m('a', {href: `http://${c.deviceaddr}/cdata.html?container=${c.id}&from=${c.image}`}, c.id)),
+    m('td', m('a', {href: `http://${c.deviceaddr}`}, c.device)),
+    m('td', c.image), m('td', c.message), m('td', (c.publish||'').split(';').map(p => (
+    m('tag', p.replace('=', '->'))
   )))])));
 }
 
