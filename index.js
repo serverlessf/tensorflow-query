@@ -11,11 +11,8 @@ const SQLTYPE = {
   'number': 'REAL',
   'string': 'TEXT',
 };
-
 const app = express();
 const db = new Database('main.db');
-
-
 
 
 
