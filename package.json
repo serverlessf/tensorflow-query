@@ -1,6 +1,6 @@
 {
   "name": "@mycelium/query",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Query service for small distributed IoT network.",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/nodef/mycelium-query#readme",
   "dependencies": {
     "better-sqlite3": "^5.4.0",
-    "extra-express": "^1.0.1"
+    "extra-express": "^1.0.1",
+    "extra-net": "^1.1.0"
   }
 }
