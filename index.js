@@ -1,17 +1,20 @@
 const Database = require('better-sqlite3');
-const express = require('express');
+const express = require('extra-express');
 const http = require('http');
+const path = require('path');
 
 
 
 const E = process.env;
 const PORT = E['PORT']||'9000';
+const ASSETS = path.join(__dirname, 'assets');
 const SQLTYPE = {
   'boolean': 'INTEGER',
   'number': 'REAL',
   'string': 'TEXT',
 };
 const app = express();
+const server = http.createServer(app);
 const db = new Database('main.db');
 
 
@@ -53,9 +56,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use((req, res, next) => {
   Object.assign(req.body, req.query);
-  if(req.method!=='GET') console.log(req.ip, req.method, req.url, req.body);
+  var {ip, method, url, body} = req;
+  if(method!=='GET') console.log(p, method, url, body);
   next();
 });
+
 app.get('/:org', (req, res) => {
   var {org} = req.params, {sql} = req.body;
   var s = db.prepare(sql||`SELECT * FROM "${org}"`);
@@ -76,9 +81,11 @@ app.post('/:org/:id', (req, res) => {
   res.json(dbReplaceAny(db, org, row));
 });
 
-
-
-const server = http.createServer(app);
+app.use(express.static(ASSETS, {extensions: ['html']}));
+app.use((err, req, res, next) => {
+  console.error(err, err.stack);
+  res.status(err.statusCode||500).send(err.json||err);
+});
 server.on('clientError', (err, soc) => {
   soc.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
