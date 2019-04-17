@@ -2,13 +2,14 @@ const Database = require('better-sqlite3');
 
 
 
+const DBFILE = 'status.db';
 const SQLTYPE = {
   'boolean': 'INTEGER',
   'number': 'REAL',
   'string': 'TEXT',
 };
 const RKEYWORD = /^offset|limit|order|group|where/i;
-const db = new Database('main.db');
+const db = new Database(DBFILE);
 
 
 

@@ -1,2 +1,6 @@
+# sqlite database
+*.db
+
 # jekyll config
 _config.yml
+_test.js

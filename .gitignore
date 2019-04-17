@@ -1,4 +1,4 @@
-# SQLite database
+# sqlite database
 *.db
 
 # Logs
