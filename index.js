@@ -45,11 +45,9 @@ app.get('/table/:id', (req, res) => {
 
 app.use(express.static(ASSETS, {extensions: ['html']}));
 app.use((err, req, res, next) => {
+  var {statusCode, message} = err;
   console.error(err, err.stack);
-  res.status(err.statusCode||500).send(err.json||err);
-});
-server.on('clientError', (err, soc) => {
-  soc.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+  res.status(statusCode||500).json(err.json||{statusCode, message});
 });
 server.listen(PORT, () => {
   console.log('QUERY started on port '+PORT);

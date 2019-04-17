@@ -25,8 +25,8 @@ function rowMap(row) {
 };
 
 function queryMap(query) {
-  var q = query||'';
-  return RKEYWORD.test(q)? q:'WHERE '+q;
+  var q = (query||'').trim();
+  return !q || RKEYWORD.test(q)? q:'WHERE '+q;
 }
 
 function dropTable(table) {
@@ -68,6 +68,7 @@ function replaceRowAuto(table, row) {
 function selectRows(table, query) {
   var expr = queryMap(query);
   var sql = `SELECT * FROM "${table}" ${expr}`;
+  console.log({sql});
   return db.prepare(sql).all();
 }
 exports.drop = dropTable;

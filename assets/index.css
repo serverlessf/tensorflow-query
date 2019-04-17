@@ -1,0 +1,57 @@
+h1, h2 {
+  text-align: center;
+}
+body, form *, [btn] {
+  font-family: 'Baloo Chettan', cursive;
+}
+h2 small {
+  font-size: 1.5rem;
+}
+
+body.image #aimage {
+  color: blueviolet;
+  border-color: blueviolet;
+}
+body.container #acontainer {
+  color: blueviolet;
+  border-color: blueviolet;
+}
+body.status #astatus {
+  color: blueviolet;
+  border-color: blueviolet;
+}
+
+[err] {
+  color: darkred;
+}
+#stderr {
+  border-left-color: red;
+  color: darkred;
+}
+
+
+table {
+  margin-top: 4rem;
+}
+table:not([class]) > caption {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+table:not([class]) pre {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#editor { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

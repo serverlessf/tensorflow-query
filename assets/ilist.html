@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/png" href="https://i.ibb.co/0hPgKYL/logo.png">
+<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/barecss@1.1.1/css/bare.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+<script src="https://unpkg.com/moment/min/moment.min.js"></script>
+<script src="https://unpkg.com/mithril/mithril.js"></script>
+<link rel="stylesheet" href="index.css">
+<script async src="ilist.js"></script>
+<title>IMAGE LIST: STATUS</title>
+</head>
+
+
+<body class="image">
+<nav><label><input type="checkbox"><header><a href="/">
+  <img src="https://i.ibb.co/0hPgKYL/logo.png"> STATUS
+  </a></header>
+  <ul>
+    <li><a href="/ilist.html" id="aimage">App</a></li>
+    <li><a href="/clist.html" id="acontainer">Instance</a></li>
+    <li><a href="/" id="astatus">Status</a></li>
+  </ul>
+</label></nav>
+
+
+<main><section>
+<form txt="c">
+  <p err></p>
+  <a href="/upload.html?image=" btn>New App</a>
+  <grid txt="l">
+  <div col="1/2">
+    <label>Namespace</label>
+    <input type="text" name="table" id="table" placeholder="e.g. default">
+  </div>
+  <div col="1/2">
+    <label>Query</label>
+    <input type="text" name="sql" id="sql" placeholder="e.g. city='Hyderabad'">
+  </div>
+  </grid>
+</form>
+<table>
+  <thead><tr>
+    <th>Device</th>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Runtime</th>
+    <th>Ports</th>
+  </tr></thead>
+  <tbody></tbody>
+</table>
+</section></main>
+
+
+</body>
+</html>
