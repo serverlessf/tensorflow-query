@@ -1,5 +1,5 @@
 const $p = document.querySelector('p');
-const $table = document.querySelector('#table');
+const $scope = document.querySelector('#scope');
 const $sql = document.querySelector('#sql');
 const $tbody = document.querySelector('tbody');
 var options = {};
@@ -19,8 +19,8 @@ function onReady() {
 }
 
 async function request(o) {
-  var table = $table.value, data = {sql: $sql.value};
-  var ds = await m.request({method: 'GET', url: `/table/${table}.device`, data});
+  var scope = $scope.value||'default', data = {sql: $sql.value};
+  var ds = await m.request({method: 'GET', url: `/table/${scope}.device`, data});
   m.render($tbody, ds.map(d => m('tr', [
     m('td', m('a', {href: `http://${d.address}`}, d.id)),
     m('td', d.latitude), m('td', d.longitude),

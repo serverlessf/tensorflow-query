@@ -68,7 +68,6 @@ function replaceRowAuto(table, row) {
 function selectRows(table, query) {
   var expr = queryMap(query);
   var sql = `SELECT * FROM "${table}" ${expr}`;
-  console.log({sql});
   return db.prepare(sql).all();
 }
 exports.drop = dropTable;
