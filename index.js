@@ -35,6 +35,7 @@ app.delete('/table/:id', (req, res) => {
 });
 app.post('/table/:id', (req, res) => {
   var {id} = req.params, row = req.body;
+  table.create(id);
   res.json(table.replace(id, row));
 });
 app.get('/table/:id', (req, res) => {
