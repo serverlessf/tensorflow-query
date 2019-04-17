@@ -8,48 +8,11 @@ const path = require('path');
 const E = process.env;
 const PORT = E['PORT']||'8000';
 const ASSETS = path.join(__dirname, 'assets');
-const SQLTYPE = {
-  'boolean': 'INTEGER',
-  'number': 'REAL',
-  'string': 'TEXT',
-};
 const app = express();
 const server = http.createServer(app);
-const db = new Database('main.db');
 
 
 
-function sqlType(val) {
-  return SQLTYPE[typeof val]||null;
-}
-
-function sqlFilter(row, out={}) {
-  for(var k in row)
-    if(sqlType(row[k])) out[k] = row[k];
-  return out;
-};
-
-function sqlReplace(table, row) {
-  var keys = Object.keys(row);
-  var fields = keys.map(k => `"${k}"`).join(', ');
-  var values = keys.map(k => `@${k}`).join(', ');
-  return `REPLACE INTO "${table}" (${fields}) VALUES (${values})`;
-}
-
-function dbReplace(db, table, row) {
-  return db.prepare(sqlReplace(table, row)).run(row);
-}
-
-function dbReplaceAny(db, table, row) {
-  var old = db.prepare(`SELECT * FROM "${table}" WHERE "id"=@id`).get(row)||{};
-  var pragma = db.pragma(`table_info("${table}")`);
-  var keys = pragma.map(r => r.name.toLowerCase());
-  for(var k in row) {
-    if(keys.includes(k.toLowerCase())) continue;
-    db.prepare(`ALTER TABLE "${table}" ADD "${k}" ${sqlType(row[k])}`).run();
-  }
-  return dbReplace(db, table, Object.assign(old, row));
-}
 
 
 app.use(express.urlencoded({extended: false}));
