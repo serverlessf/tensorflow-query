@@ -1,5 +1,7 @@
 const $h2 = document.querySelector('h2');
 const $form = document.querySelector('form');
+const $scope = document.querySelector('#scope');
+const $sql = document.querySelector('#sql');
 const $id = document.querySelector('#id');
 const $from = document.querySelector('#from');
 const $gitUrl = document.querySelector('#gitUrl');
