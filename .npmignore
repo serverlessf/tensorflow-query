@@ -1,7 +1,10 @@
-# sqlite database
+# SQLite database
 *.db
 *.db-journal
 
-# jekyll config
+# Jekyll config
 _config.yml
 _test.js
+
+# Build
+.travis.yml
